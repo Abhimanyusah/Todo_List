@@ -1,14 +1,142 @@
- body {
-     background-color: #f8f9fa;
- }
 
- .todo-container {
-     max-width: 600px;
-     margin: 50px auto;
- }
+body {
+    background-color: #414141;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
- .todo-item {
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
- }
+.container {
+    width: 100%;
+    max-width: 360px;
+    padding: 33px;
+    background-color: #fff;
+    margin: 5% auto 0 auto;
+}
+
+.container h1 {
+    text-align: center;
+    font-size: 24px;
+}
+
+#inp {
+    width: 100%;
+    max-width: 270px;
+    padding: 8px;
+    border: 2px solid rgb(6, 145, 145);
+    outline: none;
+    font-size: 19px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    max-width: 80px;
+    height: 41px;
+    background-color: rgb(4, 27, 27);
+    color: #fff;
+    border-radius: 2px;
+    font-size: 19px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.text {
+    margin-top: 20px;
+    background-color: aqua;
+    border-radius: 5px;
+    max-width: 400px;
+    font-family: Arial, sans-serif;
+   
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 8px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.task-checkbox {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.task-text {
+    font-size: 16px;
+    color: #333;
+    width: 230px;
+    word-wrap: break-word;
+}
+
+.fa-trash {
+    cursor: pointer;
+    color: red;
+    transition: transform 0.2s ease;
+}
+
+.fa-trash:hover {
+    transform: scale(1.2);
+}
+
+
+ @media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    #inp {
+        width: 100%;
+        padding: 10px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    .task-text {
+        font-size: 14px;
+    }
+
+} 
+
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    #inp {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+        height: 45px;
+        padding: 12px;
+        font-size: 18px;
+    }
+
+    .task-text {
+        font-size: 14px;
+    }
+
+    .task-checkbox {
+        margin-right: 8px;
+    }
+
+    .task-text {
+        font-size: 14px;
+        width: 180px;
+    }
+} 
