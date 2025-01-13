@@ -1,54 +1,56 @@
+let inputs = document.getElementById("inp");
+let text = document.querySelector(".text");
+let button = document.querySelector("#btn");
 
-const todoInput = document.getElementById('todo-input');
-const addButton = document.getElementById('add-btn');
-const todoList = document.getElementById('todo-list');
+button.addEventListener("click", Add);
 
-function addTodo() {
-  const todoText = todoInput.value.trim();
-  
-  if (todoText) {
-    const todoItem = document.createElement('li');
-    todoItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
-    
-    todoItem.innerHTML = ` 
-      <div class="d-flex align-items-center">
-        <input type="checkbox" class="form-check-input me-2" onchange="toggleCompletion(this)">
-        <span>${todoText}</span>
-      </div>
-      <button class="btn btn-danger btn-sm ms-auto" onclick="removeTodo(this)">Delete</button>
-    `;
-    
-    const todoTextSpan = todoItem.querySelector('span');
-    todoTextSpan.addEventListener('click', () => {
-      const checkbox = todoItem.querySelector('input[type="checkbox"]');
-      checkbox.checked = !checkbox.checked; 
-      toggleCompletion(checkbox);  
-    });
-    
-    todoList.appendChild(todoItem);
-    todoInput.value = ''; 
-  }
-}
-
-function removeTodo(button) {
-  const todoItem = button.parentElement;
-  todoList.removeChild(todoItem);  
-}
-
-function toggleCompletion(checkbox) {
-  const todoItem = checkbox.parentElement;  
-  const todoText = todoItem.querySelector('span');
-  
-  if (checkbox.checked) {
-    todoText.style.textDecoration = 'line-through';  
+function Add() {
+  if (inputs.value === "") {
+    alert("Please Enter Task");
   } else {
-    todoText.style.textDecoration = 'none'; 
+    let newEle = document.createElement("div");
+    newEle.classList.add("task-item");
+
+    let taskContent = document.createElement("div");
+    taskContent.classList.add("task-content");
+
+    let checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.classList.add("task-checkbox");
+
+    let span = document.createElement("span");
+    span.textContent = inputs.value;
+    span.classList.add("task-text");
+
+    taskContent.appendChild(checkbox);
+    taskContent.appendChild(span);
+
+    let iconContainer = document.createElement("div");
+    iconContainer.classList.add("icon-container");
+
+    let trashIcon = document.createElement("i");
+    trashIcon.classList.add("fa-sharp", "fa-solid", "fa-trash");
+
+    iconContainer.appendChild(trashIcon);
+    newEle.appendChild(taskContent);
+    newEle.appendChild(iconContainer);
+    text.appendChild(newEle);
+
+    inputs.value = "";
+
+    trashIcon.addEventListener("click", function () {
+      newEle.remove();
+    });
+
+    checkbox.addEventListener("click", function () {
+      span.style.textDecoration = checkbox.checked ? "line-through" : "none";
+    });
+
+    taskContent.addEventListener("click", function (e) {
+      if (e.target !== checkbox) {
+        checkbox.checked = !checkbox.checked;
+        span.style.textDecoration = checkbox.checked ? "line-through" : "none";
+      }
+    });
   }
 }
-
-addButton.addEventListener('click', addTodo);
-todoInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    addTodo();
-  }
-});
